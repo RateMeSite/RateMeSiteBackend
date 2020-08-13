@@ -4,7 +4,6 @@ const cors = require("cors"); //Gets Cors Service
 const app = express(); //Creates Backend App
 app.use(cors()); //Removes Cors Error
 app.use(express.json()); //Allows Backend To Read Json
-app.use(express.static("public"))
 
 let userData = [];
 
