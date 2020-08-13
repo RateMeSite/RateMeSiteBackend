@@ -4,6 +4,7 @@ const cors = require("cors"); //Gets Cors Service
 const app = express(); //Creates Backend App
 app.use(cors()); //Removes Cors Error
 app.use(express.json()); //Allows Backend To Read Json
+app.use(express.static("public"))
 
 let userData = [];
 
@@ -28,7 +29,7 @@ app.post("/tweet", (request, response) => {
 
   let foundUser = false;
   for (let i = 0; i < userData.length; i++) {
-    if (userData[i].name === data.firstname + " " + data.lastname) {
+    if (userData[i].name === data.firstname + " " + data.lastname) { 
       userData[i].comments.push(data.message);
       foundUser = true;
       break;
@@ -45,4 +46,5 @@ app.post("/tweet", (request, response) => {
   console.log(userData);
 });
 
-app.listen(5000, () => {});
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running..."));
